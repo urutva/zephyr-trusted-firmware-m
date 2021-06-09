@@ -19,6 +19,7 @@ add_library(tfm_partitions INTERFACE)
 add_library(tfm_partition_defs INTERFACE)
 
 add_subdirectory(partitions/lib/sprt)
+add_subdirectory(partitions/example_partition)
 add_subdirectory(partitions/audit_logging)
 add_subdirectory(partitions/crypto)
 add_subdirectory(partitions/initial_attestation)
