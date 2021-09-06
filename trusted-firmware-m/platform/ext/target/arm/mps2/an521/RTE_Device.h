@@ -61,7 +61,7 @@
 
 // <e> I2C (Inter-integrated Circuit Interface 2) [Driver_I2C3]
 // <i> Configuration settings for Driver_I2C3 in component ::Drivers:I2C
-#define   RTE_I2C3                       0
+#define   RTE_I2C3                       1
 // </e> I2C (Inter-integrated Circuit Interface 2) [Driver_I2C3]
 
 // <e> USART (Universal synchronous - asynchronous receiver transmitter) [Driver_USART0]

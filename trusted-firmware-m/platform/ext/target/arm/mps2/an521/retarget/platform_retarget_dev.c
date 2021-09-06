@@ -27,6 +27,7 @@
 #include "platform_retarget.h"
 #include "system_cmsdk_mps2_an521.h"
 #include "platform/include/tfm_plat_defs.h"
+#include "mps2_time.h"
 
 /* ARM UART driver structures */
 #ifdef ARM_UART0_S
@@ -440,4 +441,113 @@ static struct mpc_sie200_dev_data_t MPC_CODE_SRAM3_DEV_DATA_S = {
 struct mpc_sie200_dev_t MPC_CODE_SRAM3_DEV_S = {
     &(MPC_CODE_SRAM3_DEV_CFG_S),
     &(MPC_CODE_SRAM3_DEV_DATA_S)};
+#endif
+
+/* ARM I2C SBCon driver structures */
+#ifdef I2C0_SBCON_S
+static const struct i2c_sbcon_dev_cfg_t I2C0_SBCON_DEV_CFG_S = {
+    .base = I2C0_SBCON_BASE_S,
+    .sleep_us = mps2_sleepus,
+    .default_freq_hz = DEFAULT_I2C_SBCON_HZ};
+static struct i2c_sbcon_dev_data_t I2C0_SBCON_DEV_DATA_S = {
+    .freq_us = 0,
+    .sys_clk = 0,
+    .state = 0};
+struct i2c_sbcon_dev_t I2C0_SBCON_DEV_S = {
+    &(I2C0_SBCON_DEV_CFG_S),
+    &(I2C0_SBCON_DEV_DATA_S)};
+#endif
+#ifdef I2C0_SBCON_NS
+static const struct i2c_sbcon_dev_cfg_t I2C0_SBCON_DEV_CFG_NS = {
+    .base = I2C0_SBCON_BASE_NS,
+    .sleep_us = mps2_sleepus,
+    .default_freq_hz = DEFAULT_I2C_SBCON_HZ};
+static struct i2c_sbcon_dev_data_t I2C0_SBCON_DEV_DATA_NS = {
+    .freq_us = 0,
+    .sys_clk = 0,
+    .state = 0};
+struct i2c_sbcon_dev_t I2C0_SBCON_DEV_NS = {
+    &(I2C0_SBCON_DEV_CFG_NS),
+    &(I2C0_SBCON_DEV_DATA_NS)};
+#endif
+
+#ifdef I2C1_SBCON_S
+static const struct i2c_sbcon_dev_cfg_t I2C1_SBCON_DEV_CFG_S = {
+    .base = I2C1_SBCON_BASE_S,
+    .sleep_us = mps2_sleepus,
+    .default_freq_hz = DEFAULT_I2C_SBCON_HZ};
+static struct i2c_sbcon_dev_data_t I2C1_SBCON_DEV_DATA_S = {
+    .freq_us = 0,
+    .sys_clk = 0,
+    .state = 0};
+struct i2c_sbcon_dev_t I2C1_SBCON_DEV_S = {
+    &(I2C1_SBCON_DEV_CFG_S),
+    &(I2C1_SBCON_DEV_DATA_S)};
+#endif
+#ifdef I2C1_SBCON_NS
+static const struct i2c_sbcon_dev_cfg_t I2C1_SBCON_DEV_CFG_NS = {
+    .base = I2C1_SBCON_BASE_NS,
+    .sleep_us = mps2_sleepus,
+    .default_freq_hz = DEFAULT_I2C_SBCON_HZ};
+static struct i2c_sbcon_dev_data_t I2C1_SBCON_DEV_DATA_NS = {
+    .freq_us = 0,
+    .sys_clk = 0,
+    .state = 0};
+struct i2c_sbcon_dev_t I2C1_SBCON_DEV_NS = {
+    &(I2C1_SBCON_DEV_CFG_NS),
+    &(I2C1_SBCON_DEV_DATA_NS)};
+#endif
+
+#ifdef I2C2_SBCON_S
+static const struct i2c_sbcon_dev_cfg_t I2C2_SBCON_DEV_CFG_S = {
+    .base = I2C2_SBCON_BASE_S,
+    .sleep_us = mps2_sleepus,
+    .default_freq_hz = DEFAULT_I2C_SBCON_HZ};
+static struct i2c_sbcon_dev_data_t I2C2_SBCON_DEV_DATA_S = {
+    .freq_us = 0,
+    .sys_clk = 0,
+    .state = 0};
+struct i2c_sbcon_dev_t I2C2_SBCON_DEV_S = {
+    &(I2C2_SBCON_DEV_CFG_S),
+    &(I2C2_SBCON_DEV_DATA_S)};
+#endif
+#ifdef I2C2_SBCON_NS
+static const struct i2c_sbcon_dev_cfg_t I2C2_SBCON_DEV_CFG_NS = {
+    .base = I2C2_SBCON_BASE_NS,
+    .sleep_us = mps2_sleepus,
+    .default_freq_hz = DEFAULT_I2C_SBCON_HZ};
+static struct i2c_sbcon_dev_data_t I2C2_SBCON_DEV_DATA_NS = {
+    .freq_us = 0,
+    .sys_clk = 0,
+    .state = 0};
+struct i2c_sbcon_dev_t I2C2_SBCON_DEV_NS = {
+    &(I2C2_SBCON_DEV_CFG_NS),
+    &(I2C2_SBCON_DEV_DATA_NS)};
+#endif
+
+#ifdef I2C3_SBCON_S
+static const struct i2c_sbcon_dev_cfg_t I2C3_SBCON_DEV_CFG_S = {
+    .base = I2C3_SBCON_BASE_S,
+    .sleep_us = mps2_sleepus,
+    .default_freq_hz = DEFAULT_I2C_SBCON_HZ};
+static struct i2c_sbcon_dev_data_t I2C3_SBCON_DEV_DATA_S = {
+    .freq_us = 0,
+    .sys_clk = 0,
+    .state = 0};
+struct i2c_sbcon_dev_t I2C3_SBCON_DEV_S = {
+    &(I2C3_SBCON_DEV_CFG_S),
+    &(I2C3_SBCON_DEV_DATA_S)};
+#endif
+#ifdef I2C3_SBCON_NS
+static const struct i2c_sbcon_dev_cfg_t I2C3_SBCON_DEV_CFG_NS = {
+    .base = I2C3_SBCON_BASE_NS,
+    .sleep_us = mps2_sleepus,
+    .default_freq_hz = DEFAULT_I2C_SBCON_HZ};
+static struct i2c_sbcon_dev_data_t I2C3_SBCON_DEV_DATA_NS = {
+    .freq_us = 0,
+    .sys_clk = 0,
+    .state = 0};
+struct i2c_sbcon_dev_t I2C3_SBCON_DEV_NS = {
+    &(I2C3_SBCON_DEV_CFG_NS),
+    &(I2C3_SBCON_DEV_DATA_NS)};
 #endif

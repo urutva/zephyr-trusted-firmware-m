@@ -30,6 +30,8 @@
 #define PSA_FF_TEST_SECURE_UART2
 #endif
 
+const uint8_t lsm303_addr = (0x1E << 1);
+
 #define ARRAY_SIZE(arr) (sizeof(arr)/sizeof(arr[0]))
 
 /* The section names come from the scatter file */

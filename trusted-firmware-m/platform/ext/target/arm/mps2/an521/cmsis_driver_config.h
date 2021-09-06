@@ -33,4 +33,44 @@
 #endif
 #endif
 
+#define SECURE_I2C0
+
+#ifdef RTE_I2C0
+#ifdef SECURE_I2C0
+#define I2C0_DEV       I2C0_SBCON_DEV_S
+#else
+#define I2C0_DEV       I2C0_SBCON_DEV_NS
+#endif
+#endif
+
+#define SECURE_I2C1
+
+#ifdef RTE_I2C1
+#ifdef SECURE_I2C1
+#define I2C1_DEV       I2C1_SBCON_DEV_S
+#else
+#define I2C1_DEV       I2C1_SBCON_DEV_NS
+#endif
+#endif
+
+#define SECURE_I2C2
+
+#ifdef RTE_I2C2
+#ifdef SECURE_I2C2
+#define I2C2_DEV       I2C2_SBCON_DEV_S
+#else
+#define I2C2_DEV       I2C2_SBCON_DEV_NS
+#endif
+#endif
+
+#define SECURE_I2C3
+
+#ifdef RTE_I2C3
+#ifdef SECURE_I2C3
+#define I2C3_DEV       I2C3_SBCON_DEV_S
+#else
+#define I2C3_DEV       I2C3_SBCON_DEV_NS
+#endif
+#endif
+
 #endif  /* __CMSIS_DRIVER_CONFIG_H__ */

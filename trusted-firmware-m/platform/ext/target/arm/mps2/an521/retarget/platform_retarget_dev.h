@@ -33,6 +33,7 @@
 #include "ppc_sse200_drv.h"
 #include "arm_uart_drv.h"
 #include "timer_cmsdk/timer_cmsdk.h"
+#include "i2c_sbcon_drv.h"
 
 /* ======= Defines peripheral configuration structures ======= */
 /* ARM UART driver structures */
@@ -158,6 +159,35 @@ extern struct mpc_sie200_dev_t MPC_CODE_SRAM2_DEV_S;
 
 #ifdef MPC_CODE_SRAM3_S
 extern struct mpc_sie200_dev_t MPC_CODE_SRAM3_DEV_S;
+#endif
+
+/* ARM I2C SBCon driver structures */
+#ifdef I2C0_SBCON_S
+extern struct i2c_sbcon_dev_t I2C0_SBCON_DEV_S;
+#endif
+#ifdef I2C0_SBCON_NS
+extern struct i2c_sbcon_dev_t I2C0_SBCON_DEV_NS;
+#endif
+
+#ifdef I2C1_SBCON_S
+extern struct i2c_sbcon_dev_t I2C1_SBCON_DEV_S;
+#endif
+#ifdef I2C1_SBCON_NS
+extern struct i2c_sbcon_dev_t I2C1_SBCON_DEV_NS;
+#endif
+
+#ifdef I2C2_SBCON_S
+extern struct i2c_sbcon_dev_t I2C2_SBCON_DEV_S;
+#endif
+#ifdef I2C2_SBCON_NS
+extern struct i2c_sbcon_dev_t I2C2_SBCON_DEV_NS;
+#endif
+
+#ifdef I2C3_SBCON_S
+extern struct i2c_sbcon_dev_t I2C3_SBCON_DEV_S;
+#endif
+#ifdef I2C3_SBCON_NS
+extern struct i2c_sbcon_dev_t I2C3_SBCON_DEV_NS;
 #endif
 
 #endif  /* __ARM_LTD_AN521_RETARGET_DEV_H__ */

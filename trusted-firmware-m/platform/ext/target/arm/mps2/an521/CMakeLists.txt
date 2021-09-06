@@ -72,7 +72,7 @@ endif()
 target_include_directories(platform_s
     PUBLIC
         .
-        ../common
+        ${CMAKE_CURRENT_SOURCE_DIR}/../common
         cmsis_drivers
         native_drivers
         partition
@@ -88,11 +88,14 @@ target_sources(platform_s
         cmsis_drivers/Driver_MPC.c
         cmsis_drivers/Driver_PPC.c
         cmsis_drivers/Driver_USART.c
+        cmsis_drivers/Driver_I2C.c
         retarget/platform_retarget_dev.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../common/mps2_time.c
         cmsis_core/system_cmsdk_mps2_an521.c
         native_drivers/mpc_sie200_drv.c
         native_drivers/mpu_armv8m_drv.c
         native_drivers/ppc_sse200_drv.c
+        native_drivers/i2c_sbcon_drv.c
         spm_hal.c
         tfm_hal_isolation.c
         target_cfg.c
@@ -124,6 +127,7 @@ target_sources(platform_ns
         native_drivers/timer_cmsdk/timer_cmsdk.c
         cmsis_drivers/Driver_USART.c
         retarget/platform_retarget_dev.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../common/mps2_time.c
         cmsis_core/system_cmsdk_mps2_an521.c
         $<$<BOOL:${TFM_PARTITION_PLATFORM}>:${CMAKE_CURRENT_SOURCE_DIR}/plat_test.c>
         $<$<BOOL:${TFM_PARTITION_PLATFORM}>:${CMAKE_CURRENT_SOURCE_DIR}/services/src/tfm_platform_system.c>
@@ -137,7 +141,7 @@ target_link_libraries(platform_ns
 target_include_directories(platform_ns
     PUBLIC
         .
-        ../common
+        ${CMAKE_CURRENT_SOURCE_DIR}/../common
         ${PLATFORM_DIR}/..
         retarget
         cmsis_core
@@ -152,6 +156,7 @@ if(BL2)
         PRIVATE
             boot_hal.c
             retarget/platform_retarget_dev.c
+            ${CMAKE_CURRENT_SOURCE_DIR}/../common/mps2_time.c
             cmsis_core/system_cmsdk_mps2_an521.c
             cmsis_drivers/Driver_Flash.c
             native_drivers/arm_uart_drv.c
@@ -170,6 +175,7 @@ if(BL2)
             retarget
         PRIVATE
             .
+            ${CMAKE_CURRENT_SOURCE_DIR}/../common
             ${PLATFORM_DIR}/..
             native_drivers
     )

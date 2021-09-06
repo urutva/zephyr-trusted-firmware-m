@@ -46,4 +46,15 @@
 #define CMSDK_TIMER1_S
 #define CMSDK_TIMER1_NS
 
+/* I2C */
+#define DEFAULT_I2C_SBCON_HZ  4000000U /* 4MHz */
+#define I2C0_SBCON_S
+// #define I2C0_SBCON_NS
+#define I2C1_SBCON_S
+// #define I2C1_SBCON_NS
+#define I2C2_SBCON_S
+// #define I2C2_SBCON_NS
+#define I2C3_SBCON_S
+// #define I2C3_SBCON_NS
+
 #endif  /* __ARM_LTD_DEVICE_CFG_H__ */
