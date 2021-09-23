@@ -60,3 +60,25 @@ psa_status_t psa_example_hash(const uint8_t *input,
 
     return status;
 }
+
+psa_status_t example_read_lsm303(uint8_t *data,
+                                size_t data_size)
+{
+    psa_status_t status;
+    psa_handle_t handle;
+
+    psa_outvec out_vec[] = {
+        { .base = data, .len = data_size },
+    };
+
+    handle = psa_connect(TFM_EXAMPLE_READ_LSM303_SID, TFM_EXAMPLE_READ_LSM303_VERSION);
+    if (!PSA_HANDLE_IS_VALID(handle)) {
+        return PSA_HANDLE_TO_ERROR(handle);
+    }
+
+    status = psa_call(handle, PSA_IPC_CALL, NULL, 0, out_vec, 1);
+
+    psa_close(handle);
+
+    return status;
+}

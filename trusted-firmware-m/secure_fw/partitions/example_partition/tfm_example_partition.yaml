@@ -30,12 +30,21 @@
       "version": 1,
       "version_policy": "STRICT"
     },
+    {
+      "name": "TFM_EXAMPLE_READ_LSM303",
+      # SIDs must be unique, ones that are currently in use are documented in
+      # tfm_secure_partition_addition.rst on line 184
+      "sid": "0x00001001",
+      "non_secure_clients": true,
+      "version": 1,
+      "version_policy": "STRICT"
+    },
     # Define the secure service here.
     # {
     #   "name": "TFM_EXAMPLE_SERVICE",
     #   # SIDs must be unique, ones that are currently in use are documented in
     #   # tfm_secure_partition_addition.rst on line 184
-    #   "sid": "0x00001001",
+    #   "sid": "0x00001002",
     #   "non_secure_clients": true,
     #   "version": 1,
     #   "version_policy": "STRICT"
