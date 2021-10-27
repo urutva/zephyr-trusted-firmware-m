@@ -47,9 +47,13 @@ macro(tfm_toolchain_reset_compiler_flags)
         -funsigned-char
         -mthumb
         -nostdlib
-        -std=c99
+        $<$<COMPILE_LANGUAGE:C>:-std=c99>
         $<$<BOOL:${TFM_CODE_COVERAGE}>:-g>
         $<$<NOT:$<BOOL:${TFM_SYSTEM_FP}>>:-msoft-float>
+    )
+
+    add_compile_options(
+        $<$<COMPILE_LANGUAGE:CXX>:-std=c++11>
     )
 endmacro()
 
@@ -92,6 +96,7 @@ macro(tfm_toolchain_reload_compiler)
     set(CMAKE_ASM_LINK_FLAGS "-mcpu=${CMAKE_SYSTEM_PROCESSOR}")
 
     set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS_INIT})
+    set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS_INIT})
     set(CMAKE_ASM_FLAGS ${CMAKE_ASM_FLAGS_INIT})
 endmacro()
 
