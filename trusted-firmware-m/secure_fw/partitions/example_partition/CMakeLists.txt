@@ -13,6 +13,7 @@ cmake_minimum_required(VERSION 3.15)
 cmake_policy(SET CMP0079 NEW)
 
 add_subdirectory(tflm)
+add_subdirectory(hello_world)
 
 # The name of the target is required to be of the pattern
 # tfm_app_rot_partition_x or tfm_psa_rot_partition_x, as it affects how the
@@ -59,6 +60,7 @@ target_link_libraries(tfm_app_rot_partition_example
         psa_interface
         platform_s
         tfm_sprt
+        tfm_app_rot_partition_example_hello_world
 )
 
 ############################ NS API ########################################

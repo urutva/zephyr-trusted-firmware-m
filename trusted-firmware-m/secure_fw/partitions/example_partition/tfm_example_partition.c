@@ -18,11 +18,18 @@
 #include "Driver_I2C.h"
 #include "platform_regs.h"
 
+#include "main_functions.h"
+
 /* I2C driver name for LSM303 peripheral */
 extern ARM_DRIVER_I2C LSM303_DRIVER;
 
 /* I2C address of LSM303 peripheral */
 extern const uint8_t lsm303_addr;
+
+// This constant represents the range of x values our model was trained on,
+// which is from 0 to (2 * Pi). We approximate Pi to avoid requiring additional
+// libraries.
+extern const float kXrange;
 
 /**
  * \brief An example service implementation that calculates SHA-256 hash of a
@@ -240,6 +247,68 @@ static void tfm_example_read_lsm303(uint8_t hw_initialised)
 }
 
 /**
+ * \brief Run inference using Tensorflow lite-micro
+ */
+void tfm_example_tflm_hello(void)
+{
+    psa_status_t status;
+    psa_msg_t msg;
+
+    float x_value, y_value;
+
+    /* Retrieve the message corresponding to the TFLM hello service signal */
+    status = psa_get(TFM_EXAMPLE_TFLM_HELLO_SIGNAL, &msg);
+    if (status != PSA_SUCCESS) {
+        return;
+    }
+
+    /* Decode the message */
+    switch (msg.type) {
+    /* Any setup or teardown on IPC connect or disconnect goes here. If
+     * nothing then just reply with success.
+     */
+    case PSA_IPC_CONNECT:
+    case PSA_IPC_DISCONNECT:
+        /* This service does not require any setup or teardown on connect or
+         * disconnect, so just reply with success.
+         */
+        status = PSA_SUCCESS;
+        break;
+
+    case PSA_IPC_CALL:
+        // Check size of invec/outvec parameter
+        if (msg.in_size[0] != sizeof(x_value) ||
+            msg.out_size[0] != sizeof(x_value)) {
+
+            status = PSA_ERROR_PROGRAMMER_ERROR;
+            break;
+        }
+
+        psa_read(msg.handle, 0, &x_value, sizeof(x_value));
+
+        if (kXrange < x_value < 0.0f) {
+            status = PSA_ERROR_PROGRAMMER_ERROR;
+            break;
+        }
+
+        /* Run inference */
+        LOG_INFFMT("[Example partition] Starting secure inferencing...\r\n");
+        y_value = loop(x_value);
+
+        psa_write(msg.handle, 0, &y_value, sizeof(y_value));
+        status = PSA_SUCCESS;
+        break;
+    default:
+        /* Invalid message type */
+        status = PSA_ERROR_PROGRAMMER_ERROR;
+        break;
+    }
+
+    /* Reply with the message result status to unblock the client */
+    psa_reply(msg.handle, status);
+}
+
+/**
  * \brief Templated example service.
  */
 // static void tfm_example_service(void)
@@ -341,6 +410,13 @@ void tfm_example_partition_main(void)
         lsm303_init_completed = 0;
     }
 
+    LOG_INFFMT("[Example partition] Initialisation of I2C bus completed\r\n");
+
+    // Tensorflow lite-micro initialisation
+    setup();
+
+    LOG_INFFMT("[Example partition] TFLM initalisation completed\r\n");
+
     /* Continually wait for one or more of the partition's RoT Service or
      * interrupt signals to be asserted and then handle the asserted signal(s).
      */
@@ -351,6 +427,8 @@ void tfm_example_partition_main(void)
             tfm_example_hash();
         } else if (signals & TFM_EXAMPLE_READ_LSM303_SIGNAL) {
             tfm_example_read_lsm303(lsm303_init_completed);
+        } else if (signals & TFM_EXAMPLE_TFLM_HELLO_SIGNAL) {
+            tfm_example_tflm_hello();
         }
         // /* Check the signal received from SPM and call the respective
         //  * service.

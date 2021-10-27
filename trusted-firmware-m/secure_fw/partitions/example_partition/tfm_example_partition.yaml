@@ -12,7 +12,7 @@
   "type": "APPLICATION-ROT",
   "priority": "NORMAL",
   "entry_point": "tfm_example_partition_main",
-  "stack_size": "0x200",
+  "stack_size": "0x1000",
   # Define MMIO regions that the service needs access to.
   # "mmio_regions": [
   #   {
@@ -35,6 +35,15 @@
       # SIDs must be unique, ones that are currently in use are documented in
       # tfm_secure_partition_addition.rst on line 184
       "sid": "0x00001001",
+      "non_secure_clients": true,
+      "version": 1,
+      "version_policy": "STRICT"
+    },
+    {
+      "name": "TFM_EXAMPLE_TFLM_HELLO",
+      # SIDs must be unique, ones that are currently in use are documented in
+      # tfm_secure_partition_addition.rst on line 184
+      "sid": "0x00001002",
       "non_secure_clients": true,
       "version": 1,
       "version_policy": "STRICT"

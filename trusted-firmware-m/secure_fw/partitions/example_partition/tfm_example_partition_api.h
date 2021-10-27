@@ -56,6 +56,22 @@ psa_status_t psa_example_hash(const uint8_t *input,
 psa_status_t example_read_lsm303(uint8_t *data,
                                 size_t data_size);
 
+/**
+ * \brief Run secure inference to get the sine value of input
+ *
+ * \param[in]   input               Angle in degrees
+ * \param[in]   input_length        Length of input in bytes
+ * \param[out]  sine_value_buf      Buffer to which calculated sine value
+ *                                  is written into
+ * \param[in]   sine_value_buf_len  Size of sine_value_buf in bytes
+ *
+ * \return Returns error code as specified in \ref psa_status_t
+ */
+psa_status_t psa_example_tflm_hello(const float *input,
+                                    size_t input_length,
+                                    float *sine_value_buf,
+                                    size_t sine_value_buf_len);
+
 #ifdef __cplusplus
 }
 #endif
