@@ -12,6 +12,8 @@ endif()
 cmake_minimum_required(VERSION 3.15)
 cmake_policy(SET CMP0079 NEW)
 
+add_subdirectory(tflm)
+
 # The name of the target is required to be of the pattern
 # tfm_app_rot_partition_x or tfm_psa_rot_partition_x, as it affects how the
 # linker script will lay the partition in memory.

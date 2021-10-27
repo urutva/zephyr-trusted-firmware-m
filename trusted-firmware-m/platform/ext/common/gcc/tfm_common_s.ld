@@ -183,7 +183,7 @@ SECTIONS
     Image$$ER_CODE_SRAM$$Limit = ADDR(.ER_CODE_SRAM) + SIZEOF(.ER_CODE_SRAM);
 #endif
 
-#if TFM_LVL != 1
+/* #if TFM_LVL != 1 */
     .ARM.extab :
     {
         *(.ARM.extab* .gnu.linkonce.armextab.*)
@@ -196,7 +196,7 @@ SECTIONS
     } > FLASH
     __exidx_end = .;
 
-#endif /* TFM_LVL != 1 */
+/* #endif TFM_LVL != 1 */
 
     .ER_TFM_CODE : ALIGN(4)
     {
